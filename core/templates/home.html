@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Progressa Home</title>
+  {% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <h1>Progressa — Project Tracking</h1>
+
+  {% if user.is_authenticated %}
+    <p>Hi {{ user.username }} ({{ user.role }}) —
+      <a href="{% url 'logout' %}">Logout</a>
+    </p>
+    <p><a href="/">Go to dashboard</a></p>
+  {% else %}
+    <form method="get" action="{% url 'login' %}">
+      <label for="role">Login as:</label>
+      <select name="role" id="role" required>
+        <option value="student">Student</option>
+        <option value="guide">Guide</option>
+        <option value="incharge">Incharge</option>
+        <option value="hod">HOD</option>
+      </select>
+      <button type="submit">Continue</button>
+    </form>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<body>
+  <h2>In-charge Dashboard</h2>
+  <ul>
+    {% for p in projects %}
+      <li>{{ p.title }} — {{ p.student.username }} — <a href="{% url 'incharge_review' p.id %}">Review</a></li>
+    {% empty %}<li>No projects waiting.</li>{% endfor %}
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+  </ul>
+</body>
+</html>

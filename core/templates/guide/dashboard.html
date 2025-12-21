@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<body>
+  <h2>Guide Dashboard — {{ request.user.username }}</h2>
+  <ul>
+    {% for p in projects %}
+      <li>
+        {{ p.title }} — by {{ p.student.username }} — {{ p.status }}
+        <a href="{% url 'guide_review' p.id %}">Review</a>
+      </li>
+    {% empty %}<li>No projects to review.</li>{% endfor %}
+  </ul>
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+</body></html>

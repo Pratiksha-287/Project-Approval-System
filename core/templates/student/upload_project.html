@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<body>
+  <h2>Upload Project</h2>
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+  <p><a href="{% url 'student_dashboard' %}">Back</a></p>
+</body>
+</html>

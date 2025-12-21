@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8">
+  {% load static %}
+<link rel="stylesheet" href="{% static 'core/static/css/style.css' %}">
+
+</head>
+<body>
+  <h2>Student Dashboard — {{ request.user.username }}</h2>
+  <p><a href="{% url 'upload_project' %}">Upload new project</a> | <a href="{% url 'logout' %}">Logout</a></p>
+  <!-- <h3>Your projects</h3>
+   <ul>
+    {% for p in projects %}
+      <li>{{ p.title }} — {{ p.status }} — submitted {{ p.submitted_at }}</li>
+    {% empty %}
+      <li>No projects yet.</li>
+    {% endfor %}
+  </ul>-->
+  <h3>Your projects</h3>
+<ul>
+  {% for item in projects_with_reviews %}
+    <li>
+      <strong>{{ item.project.title }}</strong> — {{ item.project.status }} — submitted {{ item.project.submitted_at }}
+      {% if item.reviews %}
+        <ul>
+          {% for r in item.reviews %}
+            <li>{{ r.reviewer.username }}: {{ r.feedback }} — {{ r.status_change }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No feedback yet.</p>
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No projects yet.</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

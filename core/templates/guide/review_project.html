@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<body>
+  <h2>Review - {{ project.title }}</h2>
+  <p>Student: {{ project.student.username }}</p>
+  <p>Description: {{ project.description }}</p>
+  {% if project.file %}<p>File: <a href="{{ project.file.url }}">download</a></p>{% endif %}
+  {% if project.repo_link %}<p>Repo: <a href="{{ project.repo_link }}">{{ project.repo_link }}</a></p>{% endif %}
+
+  <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    {{ approval_form.as_p }}
+    <button type="submit">Submit review</button>
+  </form>
+  <p><a href="{% url 'guide_dashboard' %}">Back</a></p>
+</body>
+</html>
